@@ -15,7 +15,7 @@ public class RunAnalysis {
     public static void main(String[] args) {
 
         // load the network
-        var network = NetworkUtils.readNetwork("C:\\Users\\Janekdererste\\Downloads\\berlin-v5.4-1pct.output_network.xml.gz");
+        var network = NetworkUtils.readNetwork("Z:\\Studium\\Bachelor - Verkehrswesen\\FS06\\Multi-agent transport simulation\\Homework 1\\control_sim\\scenarios\\berlin-v5.5-1pct\\output-berlin-v5.5-1pct_noPolicy\\berlin-v5.5-1pct.output_network.xml.gz");
 
         // create event handlers which you need for your analysis
         var beelineHandler = new BeelineDistanceHandler(network);
@@ -29,7 +29,7 @@ public class RunAnalysis {
         manager.addHandler(travelledDistanceHandler);
 
         // actually read the events file. This step will take some time.
-        EventsUtils.readEvents(manager, "C:\\Users\\Janekdererste\\Downloads\\berlin-v5.4-1pct.output_events.xml.gz");
+        EventsUtils.readEvents(manager, "Z:\\Studium\\Bachelor - Verkehrswesen\\FS06\\Multi-agent transport simulation\\Homework 1\\control_sim\\scenarios\\berlin-v5.5-1pct\\output-berlin-v5.5-1pct_noPolicy\\berlin-v5.5-1pct.output_events.xml.gz");
 
         //Now, we have parsed all events and our event handlers have collected data. We can run different analysis now
         // Let's start with the beeline handler. Get the collected data first
