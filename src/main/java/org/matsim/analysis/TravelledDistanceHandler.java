@@ -25,7 +25,7 @@ public class TravelledDistanceHandler implements TransitDriverStartsEventHandler
     private final Map<Id<Vehicle>, Id<Person>> personsInCar = new HashMap<>();
     // the container which collects the actual data we are interested in
     private final Map<Id<Person>, List<Double>> personToTrips = new HashMap<>();
-    // rember transit drivers
+    // remember transit drivers
     private final Set<Id<Person>> transitDrivers = new HashSet<>();
     // we need the network to determine the length of a link
     private final Network network;

@@ -5,68 +5,38 @@ import org.matsim.api.core.v01.events.LinkLeaveEvent;
 import org.matsim.api.core.v01.events.handler.LinkLeaveEventHandler;
 import org.matsim.api.core.v01.network.Link;
 
-/*
-import java.util.HashMap;
-import java.util.Map;
-*/
+import java.util.ArrayList;
+
 
 public class LinkEventHandler implements LinkLeaveEventHandler {
 
-    private static Id<Link> linkOfInterest;
+    // I changed the linksOfInterest variable to an ArrayList so it could take in as many link to analyze as needed
+    private static ArrayList<Id<Link>> linksOfInterest = new ArrayList();
 
-    //private final Map<String, Integer> volumes = new HashMap<>();
+    public ArrayList<String> vehicleIDs = new ArrayList();
 
-    private String vehicleIDs = "";
 
-    /*
-    Map<String, Integer> getVolumes() {
-        return volumes;
-    }
-    */
-    String getVehicleIDs( int link) {
-        setLinkOfInterest(link);
-        return vehicleIDs;
-    }
-    //String getLinkOfInterest() {return linkOfInterest.toString();}
-    void setLinkOfInterest(int entryList) {
-        linkOfInterest = Id.createLinkId(entryList);
+    String getVehicleID(int pos) {
+
+        return vehicleIDs.get(pos);
     }
 
-    /*
+    // taking a list of links to later analyze
+    void setLinksOfInterest(ArrayList<String> entryList) {
+        for(int i = 0; i < entryList.size(); i++)
+        linksOfInterest.add(Id.createLinkId(entryList.get(i)));
+    }
+
     @Override
     public void handleEvent(LinkLeaveEvent event) {
-
-        if (event.getLinkId().equals(linkOfInterest)) {
-
-            String key = getKey(event.getTime());
-            //  int currentCount = volumes.get(key);
-            //  int newCount = currentCount + 1;
-            //  volumes.put(key, newCount);
-
-            // shorter version
-            volumes.merge(key, 1, Integer::sum);
-
-        }
-    }
-
-    private String getKey(double time) {
-        return Integer.toString((int) (time / 3600));
-    }
-    */
-
-    public void handleEvent(LinkLeaveEvent event) {
-        boolean stop = false;
-        do {
-            if (vehicleIDs.isEmpty()) {
-                vehicleIDs = event.getVehicleId().toString();
-            }
-
-            else if (event.getLinkId().equals(linkOfInterest) && !vehicleIDs.contains(event.getVehicleId().toString())) {
-
+        // for every link on the list
+        for (int i = 0; i < linksOfInterest.size(); i++ ) {
+            // check, if an event happens on that link, grab that vehicle id and make sure it's not yet added into the list
+            if (event.getLinkId().equals(linksOfInterest.get(i)) && !vehicleIDs.contains(event.getVehicleId().toString())) {
+                // transform the id into a string and add it to the list
                 String id = event.getVehicleId().toString();
-                vehicleIDs = "\r" + id;
+                vehicleIDs.add(id);
             }
-            else stop = true;
-        }while (!stop);
+        }
     }
 }

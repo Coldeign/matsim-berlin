@@ -108,9 +108,9 @@ public class RunPersonTripAnalysis {
 //
 //			analysisOutputDirectory = "./scenarios/berlin-v5.5-1pct/";
 
-			runDirectory = "/Users/dominik/Workspace/runs-svn/open_berlin_scenario/v5.5-bicycle/bc-23/output";
+			runDirectory = "Z:\\Studium\\Bachelor - Verkehrswesen\\FS06\\Multi-agent transport simulation\\Homework 1\\open-berlin\\scenarios\\berlin-v5.5-1pct\\output-berlin-v5.5-1pct_Policy";
 
-			runId = "berlin-v5.5-1pct-22b";
+			runId = "berlin-v5.5-1pct";
 			runDirectoryToCompareWith = null;
 			runIdToCompareWith = null;
 
@@ -125,13 +125,13 @@ public class RunPersonTripAnalysis {
 			homeActivityPrefix = "home";
 			scalingFactor = 100;
 
-			modesString = "car,pt,bicycle,walk,ride";
+			modesString = "car,pt,bicycle,walk,ride,freight";
 
-			analysisOutputDirectory = "/Users/dominik/Workspace/runs-svn/open_berlin_scenario/v5.5-bicycle/bc-23/output/analysis";
+			analysisOutputDirectory = "Z:\\Studium\\Bachelor - Verkehrswesen\\FS06\\Multi-agent transport simulation\\Homework 1\\open-berlin\\scenarios\\berlin-v5.5-1pct\\output-berlin-v5.5-1pct_Policy\\analysis";
 		}
 		
 		Scenario scenario1 = loadScenario(runDirectory, runId, null);
-		Scenario scenario0 = loadScenario(runDirectoryToCompareWith, runIdToCompareWith, null);
+		//Scenario scenario0 = loadScenario(runDirectoryToCompareWith, runIdToCompareWith, null);
 		
 		List<AgentFilter> agentFilters = new ArrayList<>();
 
@@ -172,7 +172,7 @@ public class RunPersonTripAnalysis {
 		MatsimAnalysis analysis = new MatsimAnalysis();
 		
 		analysis.setScenario1(scenario1);	
-		analysis.setScenario0(scenario0);
+		//analysis.setScenario0(scenario0);
 		
 		analysis.setAgentFilters(agentFilters);
 		analysis.setTripFilters(tripFilters);

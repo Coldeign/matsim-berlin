@@ -13,6 +13,7 @@ import java.util.Map;
 public class SimpleEventHandler implements PersonDepartureEventHandler, PersonArrivalEventHandler {
 
     private final Map<Id<Person>, Double> departureTimeByPerson = new HashMap<>();
+    private Map<Id<Person>, Double> travelTimeByPerson = new HashMap<>();
 
     @Override
     public void handleEvent(PersonArrivalEvent event) {
@@ -20,6 +21,7 @@ public class SimpleEventHandler implements PersonDepartureEventHandler, PersonAr
         double departureTime = departureTimeByPerson.get(event.getPersonId());
         double travelTime = event.getTime() - departureTime;
         System.out.println("Travel time of person " + event.getPersonId() + " is " + travelTime + " s.");
+        travelTimeByPerson.put(event.getPersonId(), travelTime);
     }
 
     @Override
@@ -29,5 +31,8 @@ public class SimpleEventHandler implements PersonDepartureEventHandler, PersonAr
         departureTimeByPerson.put(event.getPersonId(), event.getTime());
 
 
+    }
+    double getTravelTimeByPerson(Id<Person> personID) {
+        return travelTimeByPerson.get(personID);
     }
 }
