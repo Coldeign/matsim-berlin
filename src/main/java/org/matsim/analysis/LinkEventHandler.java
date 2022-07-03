@@ -7,10 +7,10 @@ import org.matsim.api.core.v01.network.Link;
 
 import java.util.ArrayList;
 
-
+// overall i changed the whole function of the class to find out how to get the specific affected vehicles
 public class LinkEventHandler implements LinkLeaveEventHandler {
 
-    // I changed the linksOfInterest variable to an ArrayList so it could take in as many link to analyze as needed
+    // I changed the linksOfInterest variable to an ArrayList, so it could take in as many link to analyze as needed
     private static ArrayList<Id<Link>> linksOfInterest = new ArrayList();
 
     public ArrayList<String> vehicleIDs = new ArrayList();
